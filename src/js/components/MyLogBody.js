@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import NewLogBody from './newLogBox'
+import React, { Component } from 'react'
+import NewLogBody from './NewLogBox'
+import LogList from './LogList'
 
 class myLogBody extends Component {
 
@@ -7,6 +8,7 @@ class myLogBody extends Component {
         return (
             <div>
                 <NewLogBody />
+                <LogList />
             </div>
         );
     }

@@ -21,7 +21,7 @@ const { override, fixBabelImports, addLessLoader } = require('customize-cra');
    }),
     addLessLoader({
        javascriptEnabled: true,
-       modifyVars: { '@primary-color': '#1DA57A' },
+        modifyVars: { '@primary-color': '#1890ff' },
     //    这里利用了 less-loader 的 modifyVars 来进行主题配置
      }),
  );
