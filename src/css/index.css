@@ -10,11 +10,13 @@ body {
 }
 
 
-.myLog .TW {
+.log-style .TW {
     z-index: 999;
     height: 90px;
     margin-top:10px;
-
+}
+.log-style .commentBox {
+    display: none;
 }
 
 

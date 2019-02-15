@@ -1,8 +1,10 @@
 import React from 'react'
 import 'antd/dist/antd.css'
 import {Layout, Menu, Breadcrumb,Icon } from 'antd'
-import ExcellentLog from './ExcellentLog'
+// import ExcellentLog from './ExcellentLog'
 import MyLogBody from './MyLogBody'
+import ExcellentLog from './ExcellentLog'
+import {  Route, Switch, Router, NavLink } from 'react-router-dom'
 
 const { Content,  Sider, } = Layout
 
@@ -19,26 +21,35 @@ const content = () => (
         <Sider width={200} style={{ background: '#fff' }}>
           <Menu
             mode="inline"
-            defaultSelectedKeys={['3']}
+            defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
             style={{ height: '100%' }}
           >
               <Menu.Item key="1">
-              <span>我的日志  &nbsp;  </span>
-              <Icon type="edit" />
+              <NavLink to="/my-log">我的日志  &nbsp; <Icon type="edit" /></NavLink>            
               </Menu.Item>
-              <Menu.Item key="2">我的关注 &nbsp;&nbsp;
-              <Icon type="file" />
+              <Menu.Item key="2">
+              <NavLink to="/follow">我的关注  &nbsp; <Icon type="file" /></NavLink>            
               </Menu.Item>
-              <Menu.Item key="3">优秀日志 &nbsp;&nbsp;
-              <Icon type="star" />
+              <Menu.Item key="3">
+              <NavLink to="/excellent-log">优秀日志  &nbsp; <Icon type="star" /></NavLink>            
               </Menu.Item>
           </Menu>
         </Sider>
-        <Content style={{ padding: '0 24px', minHeight: 280 }}>
-          {/*<ExcellentLog/>*/}
-          <MyLogBody/>
+      
+          <Content style={{ padding: '0 24px', minHeight: 280 }}>
+        
+          <Switch>
+                  <Route exact path="/my-log" component={MyLogBody} />
+                  <Route path="/excellent-log" component={ExcellentLog} />
+          </Switch>
+      
+        
+          {/* <ExcellentLog/>
+          <MyLogBody/> */}
         </Content>
+    
+       
       </Layout>
     </Content>
     </Layout>
