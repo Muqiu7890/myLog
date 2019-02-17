@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import NewLogBody from './NewLogBox'
-import LogList from './LogList'
+import NewLogBody from './New-Log-Box'
+import LogList from './Log-List'
 
 class myLogBody extends Component {
 

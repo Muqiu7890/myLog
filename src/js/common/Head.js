@@ -1,13 +1,11 @@
 import React from 'react'
 import 'antd/dist/antd.css';
-import {Layout } from 'antd';
 import {
   Menu, Dropdown, Button, Icon, message,
 } from 'antd';
 import '../../css/index.css'
 import { Row, Col } from 'antd';
 
-const {Header}=Layout;
 // function handleButtonClick(e) {
 //   message.info('Click on left button.');
 //   console.log('click left button', e);
@@ -26,7 +24,6 @@ const menu = (
 );
 
 const Head = () => (
-    <Header className="header" style={{height: '113.6px', backgroundColor: '#595959'}}>
         <div>
             <Row type="flex" justify="space-between">
                 <Col span={12}>
@@ -42,7 +39,6 @@ const Head = () => (
                 </Col>
             </Row>
         </div>
-    </Header>
 );
 
 export default Head

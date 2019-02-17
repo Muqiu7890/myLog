@@ -17,11 +17,11 @@ class Comment extends Component {
                     {...formItemLayout}
                     label="评论"
                 >
-                    <TextArea rows={5} defaultValue='@TA'/>
+                    <TextArea rows={5} defaultValue='@TA' style={{ color: '#E0E0E0'}}/>
                     <Row>
                         <Col span={7}>
                             <Button type="primary" htmlType="submit" ghost>提交</Button>
-                            <Button style={{marginLeft: 25}} onClick={this.handleReset}>
+                            <Button style={{marginLeft: 25}} onClick={this.props.handlerHideComment}>
                                 取消
                             </Button>
                         </Col>

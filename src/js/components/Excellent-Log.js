@@ -33,12 +33,5 @@ const excellentLog = () => (
     </Layout>
 
 );
-// 定义一个Header组件
 
-// Header.propTypes = {
-//   addTodo: PropTypes.func.isRequired
-// }
-
-// 之前定义过的 Addtodo Action
-// 使用prop-types来记录传递给组件的props,如果它们不匹配将发出警告
 export default excellentLog

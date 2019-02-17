@@ -2,25 +2,29 @@ import React, { Component } from 'react';
 import { DatePicker,Input,Radio,Button,Card,Form,Row,Col,Icon } from 'antd';
 import moment from 'moment';
 import Comment from './Comment';
-import '../../css/index.css'
-
-const { TextArea } = Input;
 
 class myLogBody extends Component {
     constructor(props) {
         super(props);
 
-        this.commentBox = React.createRef;
+        this.state = {
+            isClick: false
+        };
+
         this.handlerCommentLog = this.handlerCommentLog.bind(this);
+        this.handlerHideComment = this.handlerHideComment.bind(this);
     }
 
-    componentDidMount() {
-        console.log(this.commentBox);
-    }
     handlerCommentLog() {
-        //alert('ffff');
-    //    this.commentBox.current.style.dispaly = 'block';
-       //console.log(this.commentBox);
+        this.setState({
+            isClick: true
+        })
+    }
+
+    handlerHideComment() {
+        this.setState({
+            isClick: false
+        })
     }
 
     render() {
@@ -30,7 +34,9 @@ class myLogBody extends Component {
                 style={{marginTop: '30px'}}
                 extra={<Icon type="delete" />}
             >
-                <TextArea placeholder="哈哈哈" autosize disabled/>
+                <div style={{background: '#F0F0F0',padding: '8px 8px 8px 8px'}}>
+                <div style={{padding: '10px 0 10px 17px',fontSize: '15px',background: 'white'}}>哈哈哈</div>
+                </div>
                 <br/>
                 <Row style={{marginTop: '10px'}}>
                     <Col span={24} style={{ textAlign: 'right' }}>
@@ -40,9 +46,9 @@ class myLogBody extends Component {
                         </Button>
                     </Col>
                 </Row>
-                <div className="commentBox" ref={this.commentBox}>
-                    <Comment/>
-                </div>
+                {
+                    this.state.isClick && <Comment handlerHideComment={this.handlerHideComment}/>
+                }
             </Card>
         );
     }

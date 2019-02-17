@@ -1,13 +1,10 @@
 import React from 'react'
 import 'antd/dist/antd.css'
-import { Layout } from 'antd'
-
-const { Footer } = Layout
 
 const Foot = () => (
-    <Footer style={{ textAlign: 'center' }}>
+    <div>
     ThoughtWorks Learning Platform ©2019
-    </Footer>
+    </div>
 )
 
 export default Foot

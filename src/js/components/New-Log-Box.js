@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { DatePicker,Input,Radio,Button,Card,Form,Row,Col } from 'antd'
+import React, {Component} from 'react'
+import {DatePicker, Input, Radio, Button, Card, Form, Row, Col} from 'antd'
 //import moment from 'moment'
 
 
-const { TextArea } = Input;
+const {TextArea} = Input;
 //const RadioGroup = Radio.Group;
 //const dateFormat = 'YYYY/MM/DD';
 
@@ -12,7 +12,6 @@ class newLogBox extends Component {
         value: 1,
     };
     onChange = (e) => {
-        //console.log('radio checked', e.target.value);
         this.setState({
             value: e.target.value,
         });
@@ -33,7 +32,7 @@ class newLogBox extends Component {
             wrapperCol: {span: 18},
         };
         const config = {
-            rules: [{ type: 'object', message: 'Please select time!' }],
+            rules: [{type: 'object', message: 'Please select time!'}],
         };
         return (
             <div>
@@ -46,10 +45,10 @@ class newLogBox extends Component {
                             {...formItemLayout}
                             label="类型"
                         >
-                            {getFieldDecorator('radio-group')(
-                                <Radio.Group>
-                                    <Radio value="a">日志</Radio>
-                                    <Radio value="b">目标</Radio>
+                            {getFieldDecorator('radio-group', { initialValue: 1 })(
+                                <Radio.Group onChange={this.onChange}>
+                                    <Radio value={1}>日志</Radio>
+                                    <Radio value={2}>目标</Radio>
                                 </Radio.Group>
                             )}
                         </Form.Item>
@@ -58,21 +57,19 @@ class newLogBox extends Component {
                             label="日期"
                         >
                             {getFieldDecorator('date-picker', config)(
-                                <DatePicker />
+                                <DatePicker/>
                             )}
                         </Form.Item>
                         <Form.Item
                             {...formItemLayout}
                             label="总结内容"
                         >
-                            {getFieldDecorator('date-picker', config)(
-                                <TextArea rows={5} />
-                            )}
+                            <TextArea rows={5}/>
                         </Form.Item>
                         <Row>
-                            <Col span={24} style={{ textAlign: 'right' }}>
+                            <Col span={24} style={{textAlign: 'right'}}>
                                 <Button type="primary" htmlType="submit" ghost>提交</Button>
-                                <Button style={{ marginLeft: 25 }} onClick={this.handleReset}>
+                                <Button style={{marginLeft: 25}} onClick={this.handleReset}>
                                     取消
                                 </Button>
                             </Col>
@@ -83,6 +80,7 @@ class newLogBox extends Component {
         );
     }
 }
+
 newLogBox = Form.create({})(newLogBox);
 
-export default newLogBox ;
+export default newLogBox;
