@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import NewLogBody from './New-Log-Box'
 import LogList from './Log-List'
+import {Pagination} from 'antd'
 
 class myLogBody extends Component {
 
@@ -9,6 +10,7 @@ class myLogBody extends Component {
             <div>
                 <NewLogBody/>
                 <LogList/>
+                <Pagination style={{marginTop: '40px'}}defaultCurrent={1} total={50} />
             </div>
         );
     }

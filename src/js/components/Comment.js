@@ -17,7 +17,7 @@ class Comment extends Component {
                     {...formItemLayout}
                     label="评论"
                 >
-                    <TextArea rows={5} defaultValue='@TA' style={{ color: '#E0E0E0'}}/>
+                    <TextArea rows={5} placeholder="@TA"/>
                     <Row>
                         <Col span={7}>
                             <Button type="primary" htmlType="submit" ghost>提交</Button>

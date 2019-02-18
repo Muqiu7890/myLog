@@ -12,7 +12,8 @@ const { Content } = Layout;
 const content = () => (
     <Content style={{padding: '0 24px', minHeight: 280}}>
         <Switch>
-            <Route exact path="/my-log" component={MyLogBody}/>
+            <Route exact path="/" component={MyLogBody}/>
+            <Route path="/my-log" component={MyLogBody}/>
             <Route path="/follow" component={MyFollowBody}/>
             <Route path="/excellent-log" component={ExcellentLog}/>
         </Switch>
