@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
-import {DatePicker, Input, Radio, Button, Card, Form, Row, Col, Icon} from 'antd'
+import {DatePicker, Input, Radio, Button, Card, Form, Row, Col, Icon, Collapse } from 'antd'
 import moment from 'moment'
 import Comment from './Comment'
 import ModifyLog from './Modify-Log'
+
+const Panel = Collapse.Panel;
 
 class myLogBody extends Component {
     constructor(props) {
@@ -45,7 +47,19 @@ class myLogBody extends Component {
 
 
     render() {
-        //console.log(this);
+        const text = (
+            <p style={{ paddingLeft: 24 }}>
+                hahaha
+            </p>
+        );
+        const customPanelStyle = {
+            // background: '#f7f7f7',
+            borderRadius: 4,
+            marginBottom: 24,
+            border: 0,
+            color: 'red'
+            // overflow: 'hidden',
+        };
         return (
                 !this.state.isModifyClick ?
                     <Card
@@ -69,6 +83,19 @@ class myLogBody extends Component {
                         {
                             this.state.isCommentClick && <Comment handlerHideComment={this.handlerHideComment}/>
                         }
+                        <Collapse
+                            bordered={false}
+                            defaultActiveKey={['1']}
+
+                            expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}
+                        >
+                            <Panel header="This is panel header 1" key="1" style={customPanelStyle}>
+                                <p style={{background: 'gray'}}>{text}</p>
+                                <p style={{background: 'gray'}}>{text}</p>
+                                <p style={{background: 'gray'}}>{text}</p>
+                            </Panel>
+
+                        </Collapse>
                     </Card> : <ModifyLog handlerHideModifyLog={this.handlerHideModifyLog}/>
         );
     }
