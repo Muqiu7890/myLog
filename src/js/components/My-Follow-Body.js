@@ -5,7 +5,15 @@ const Search = Input.Search;
 
 class MyFollowBody extends Component {
 
-    // const cardList = ``
+    // const cardList = <Card
+    //   title="Default size card"
+    //   extra={<a href="#">More</a>}
+    //   style={{ width: 300 }}
+    // >
+    //   <p>Card content</p>
+    //   <p>Card content</p>
+    //   <p>Card content</p>
+    // </Card>
 
     render() {
         return (
@@ -16,6 +24,7 @@ class MyFollowBody extends Component {
                 style={{ width: 350 }}
                 onSearch={value => console.log(value)}
             />
+                {/*{cardList}*/}
             </div>
 
         );
