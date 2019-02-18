@@ -15,5 +15,13 @@ body {
     margin-top:10px;
 }
 
+.ant-collapse .ant-collapse-item .ant-collapse-header .anticon {
+    right: initial;
+    left: 50px;
+}
 
+
+.log-style .panelHeader{
+    /*color: red;*/
+}
 

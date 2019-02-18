@@ -10,7 +10,7 @@ class myLogBody extends Component {
             <div>
                 <NewLogBody/>
                 <LogList/>
-                <Pagination style={{marginTop: '40px'}}defaultCurrent={1} total={50} />
+                <Pagination style={{marginTop: '40px'}} defaultCurrent={1} total={50} />
             </div>
         );
     }

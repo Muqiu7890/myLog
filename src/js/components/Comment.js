@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { DatePicker,Input,Radio,Button,Card,Form,Row,Col,Icon } from 'antd';
-import moment from 'moment';
+import { Input,Button,Form,Row,Col } from 'antd';
 
 const { TextArea } = Input;
 
 class Comment extends Component {
     render() {
-        const {getFieldDecorator} = this.props.form;
+        // const {getFieldDecorator} = this.props.form;
         const formItemLayout = {
             labelCol: {span: 6},
             wrapperCol: {span: 18},

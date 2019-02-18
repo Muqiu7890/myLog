@@ -13,8 +13,11 @@ const MenuBar = () => (
             defaultOpenKeys={['sub1']}
             style={{ height: '100%' }}
         >
+            {/*<NavLink to="/" exact={true}>我的日志  &nbsp; <Icon type="edit" /></NavLink>*/}
+
             <Menu.Item key="1">
-                <NavLink to="/my-log" exact={true}>我的日志  &nbsp; <Icon type="edit" /></NavLink>
+                {/*<NavLink to="/" exact={true}>我的日志  &nbsp; <Icon type="edit" /></NavLink>*/}
+                <NavLink to="/my-log" >我的日志  &nbsp; <Icon type="edit" /></NavLink>
             </Menu.Item>
             <Menu.Item key="2">
                 <NavLink to="/follow">我的关注  &nbsp; <Icon type="file" /></NavLink>
