@@ -6,16 +6,17 @@ import ExcellentLog from './Excellent-Log'
 import MyFollowBody from './My-Follow-Body'
 import { Route, Switch } from 'react-router-dom'
 
-const { Content } = Layout;
+const { Content } = Layout
 
 
 const content = () => (
     <Content style={{padding: '0 24px', minHeight: 280}}>
         <Switch>
-            <Route exact path="/" component={MyLogBody}/>
-            <Route  path="/my-log" component={MyLogBody}/>
-            <Route path="/follow" component={MyFollowBody}/>
-            <Route path="/excellent-log" component={ExcellentLog}/>
+            <Route exact path='/' component={MyLogBody}/>
+            <Route path='/my-log' component={MyLogBody}/>
+            <Route exact path='/follow' component={MyFollowBody}/>
+            <Route exact path='/follow/:id' component={ExcellentLog}/>
+            <Route path='/excellent-log' component={ExcellentLog}/>
         </Switch>
     </Content>
 )

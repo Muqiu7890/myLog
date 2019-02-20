@@ -1,95 +1,130 @@
 import React, {Component} from 'react'
-import {Button, Card, Icon, Collapse} from 'antd'
+import {Button, Card, Icon, Collapse, Row, Col, Popconfirm} from 'antd'
 import Comment from './Comment'
 import ModifyLog from './Modify-Log'
 import '../../css/index.css'
 
-const Panel = Collapse.Panel;
+const Panel = Collapse.Panel
 
-class myLogBody extends Component {
+const mylogs = [
+    {
+        id: 1,
+        createTime: '2018-9-2',
+        content: 'jjj',
+        comments: [
+            {
+                commentUser: 'muqiu',
+                commentText: 'hhhhhh'
+            },
+            {
+                commentUser: 'muqiu',
+                commentText: 'hhhhhh'
+            }
+        ],
+
+    },
+    {
+        id: 2,
+        createTime: '2018-9-2',
+        content: 'jjj',
+        comments: [
+        ],
+
+    }
+]
+
+class LogList extends Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
+            id: '',
             isCommentClick: false,
             isModifyClick: false
-        };
+        }
     }
 
-    handlerCommentLog = () => {
+    handlerDisplayCommentLog = (index) => {
         this.setState({
+            id: index,
             isCommentClick: true
         })
     }
 
-    handlerHideComment = () => {
+    handlerHideCommentLog = (index) => {
         this.setState({
+            id: index,
             isCommentClick: false
         })
     }
 
-    handlerModifyLog = () => {
+    handlerDisplayModifyLog = (index) => {
         this.setState({
+            id: index,
             isModifyClick: true
         })
     }
 
-    handlerHideModifyLog = () => {
+    handlerHideModifyLog = (index) => {
         this.setState({
+            id: index,
             isModifyClick: false
         })
     }
 
-
     render() {
-        const text = (
-            <p >
-                乔静(@Muqiu):hhhhh
-            </p>
-        );
+        const {id,isCommentClick,isModifyClick} = this.state
         const customPanelStyle = {
             borderRadius: 4,
             marginBottom: 24,
             border: 0,
             color: '#F0F0F0',
-
-        };
+        }
         return (
-                !this.state.isModifyClick ?
-                    <Card
-                        title="2019-2-13 日志"
+            mylogs.map((log, index) =>
+                isModifyClick && id === index ? <ModifyLog handlerHideModifyLog={this.handlerHideModifyLog}/>
+                    : <Card
+                        title={`${log.createTime}日志`}
                         style={{marginTop: '30px'}}
-                        extra={<Icon type="delete"/>}
+                        extra={
+                            <Popconfirm title='确认删除吗？' okText='确认' cancelText='取消'>
+                                <a href='#'><Icon type='delete' /></a>
+                            </Popconfirm>
+                        }
                     >
                         <div style={{background: '#F0F0F0', padding: '8px 8px 8px 8px'}}>
-                            <div style={{padding: '10px 0 10px 17px', fontSize: '15px', background: 'white'}}>哈哈哈</div>
+                            <div style={{padding: '10px 0 10px 17px', fontSize: '15px', background: 'white'}}>{log.content}</div>
                         </div>
                         <br/>
                         <Row style={{marginTop: '10px'}}>
                             <Col span={24} style={{textAlign: 'right'}}>
-                                <Button type="primary" htmlType="submit" ghost
-                                        onClick={this.handlerModifyLog}>修改日志</Button>
-                                <Button type="primary" ghost style={{marginLeft: 25}} onClick={this.handlerCommentLog}>
+                                <Button type='primary' htmlType='submit' ghost
+                                        onClick={this.handlerDisplayModifyLog.bind(this,index)}>修改日志</Button>
+                                <Button type='primary' ghost style={{marginLeft: 25}} onClick={this.handlerDisplayCommentLog.bind(this,index)}>
                                     评论日志
                                 </Button>
                             </Col>
                         </Row>
                         {
-                            this.state.isCommentClick && <Comment handlerHideComment={this.handlerHideComment}/>
+                            isCommentClick && id === index ? <Comment handlerHideCommentLog={this.handlerHideCommentLog}/> : ''
                         }
-                        <Collapse className="panelHeader"
-                            bordered={false}
-                            defaultActiveKey={['1']}
-
-                            expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />}
-                        >
-                            <Panel header="1条评论" key="1" style={customPanelStyle}>
-                                <p style={{background: '#F0F0F0'}}>{text}</p>
-                            </Panel>
-                        </Collapse>
-                    </Card> : <ModifyLog handlerHideModifyLog={this.handlerHideModifyLog}/>
-        );
+                        {
+                            !!log.comments.length && <Collapse className='panelHeader'
+                                                                  bordered={false}
+                                                                  expandIcon={({isActive}) => <Icon type='caret-right'
+                                                                                                    rotate={isActive ? 90 : 0}/>}
+                            >
+                                <Panel header={`${log.comments.length}条评论`} style={customPanelStyle}>
+                                    {
+                                        log.comments.map((comment,index) =>
+                                            <p key={index} style={{background: '#F0F0F0'}}>{`${comment.commentUser}:${comment.commentText}`}</p>)
+                                    }
+                                </Panel>
+                            </Collapse>
+                        }
+                    </Card>
+        ))
     }
 }
 
-export default myLogBody;
+export default LogList

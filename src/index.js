@@ -10,7 +10,6 @@ import ContentArea from './js/components/Content'
 import TopNav from './js/common/Top-Nav'
 import MenuBar from './js/common/Menu-Bar'
 
-
 const {
     Header, Content, Footer,
 } = Layout;

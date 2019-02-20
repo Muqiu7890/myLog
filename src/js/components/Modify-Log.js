@@ -1,45 +1,49 @@
 import React, { Component } from 'react'
 import {Button, Card, Col, DatePicker, Input, Radio, Row, Form} from 'antd'
 
-const {TextArea} = Input;
+const {TextArea} = Input
 
 class ModifyLog extends Component {
     state = {
         value: 1,
-    };
+    }
     onChange = (e) => {
         this.setState({
             value: e.target.value,
-        });
-    };
+        })
+    }
     handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log('Received values of form: ', values)
             }
-        });
-    };
+        })
+    }
+
+    hideModifyLog = () => {
+        this.props.handlerHideModifyLog(this.props.index)
+    }
 
     render() {
-        const {getFieldDecorator} = this.props.form;
+        const {getFieldDecorator} = this.props.form
         const formItemLayout = {
             labelCol: {span: 6},
             wrapperCol: {span: 18},
-        };
+        }
         const config = {
             rules: [{type: 'object', message: 'Please select time!'}],
-        };
+        }
         return (
             <div>
                 <Card
-                    title="修改成长日志"
+                    title='修改成长日志'
                     style={{marginTop: '30px'}}
                 >
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Item
                             {...formItemLayout}
-                            label="类型"
+                            label='类型'
                         >
                             {getFieldDecorator('radio-group', { initialValue: 1 })(
                                 <Radio.Group onChange={this.onChange}>
@@ -50,7 +54,7 @@ class ModifyLog extends Component {
                         </Form.Item>
                         <Form.Item
                             {...formItemLayout}
-                            label="日期"
+                            label='日期'
                         >
                             {getFieldDecorator('date-picker', config)(
                                 <DatePicker/>
@@ -58,14 +62,14 @@ class ModifyLog extends Component {
                         </Form.Item>
                         <Form.Item
                             {...formItemLayout}
-                            label="总结内容"
+                            label='总结内容'
                         >
-                            <TextArea rows={5}/>
+                            <TextArea rows={5} value={'jjj'}/>
                         </Form.Item>
                         <Row>
                             <Col span={24} style={{textAlign: 'right'}}>
-                                <Button type="primary" htmlType="submit" ghost>提交</Button>
-                                <Button style={{marginLeft: 25}} onClick={this.props.handlerHideModifyLog}>
+                                <Button type='primary' htmlType='submit' ghost>提交</Button>
+                                <Button style={{marginLeft: 25}} index={this.props.index} onClick={this.hideModifyLog}>
                                     取消
                                 </Button>
                             </Col>
@@ -73,10 +77,10 @@ class ModifyLog extends Component {
                     </Form>
                 </Card>
             </div>
-        );
+        )
     }
 }
 
-ModifyLog = Form.create({})(ModifyLog);
+ModifyLog = Form.create({})(ModifyLog)
 
-export default ModifyLog;
+export default ModifyLog
