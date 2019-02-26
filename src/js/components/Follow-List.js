@@ -37,7 +37,7 @@ class FollowList extends Component {
                 {
                 userInfo.map((user,index) =>
                     <Col span={8} key={index}>
-                        <Card style={{width: 350, margin: '10px 20px 10px 0'}}
+                        <Card style={{width: 450, margin: '10px 20px 10px 0'}}
                               title={
                                   <NavLink to='/follow/1'>
                                       <div style={{margin: '0 auto', textAlign: 'center', marginTop: '15px'}}>
