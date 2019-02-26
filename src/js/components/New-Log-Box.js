@@ -27,20 +27,18 @@ class NewLogBox extends Component {
             this.props.addLog(values)
         })
     }
+    getNowTime = () => {
+        let date = new Date();
+        return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+    }
 
     render() {
-        const getNowTime = () => {
-            let date = new Date();
-            //console.log('12432')
-            return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
-        }
         const {getFieldDecorator} = this.props.form
         const formItemLayout = {
             labelCol: {span: 6},
             wrapperCol: {span: 18},
         }
-        return (
-            <div>
+        return <div>
                 <Card
                     title='新的日志'
                     style={{marginTop: '30px'}}
@@ -61,7 +59,7 @@ class NewLogBox extends Component {
                             {...formItemLayout}
                             label='日期'
                         >
-                            {getFieldDecorator('createTime', { initialValue: moment(getNowTime,'YYYY-MM-DD')})(
+                            {getFieldDecorator('createTime', { initialValue: moment(this.getNowTime(),'YYYY-MM-DD')})(
                                 <DatePicker />
                             )}
                         </Form.Item>
@@ -84,22 +82,18 @@ class NewLogBox extends Component {
                     </Form>
                 </Card>
             </div>
-        )
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state => ({
     // console.log(state)
-}
+})
 
 const mapDispatchToProps = dispatch => ({
-    addLog (log) {
-        dispatch(addLog(log))
-    }
 
 })
 
 
-NewLogBox = Form.create({})(NewLogBox)
+const NewLogBoxForm = Form.create({})(NewLogBox)
 
-export default connect(mapStateToProps,mapDispatchToProps)(NewLogBox)
+export default connect(mapStateToProps,mapDispatchToProps)(NewLogBoxForm)

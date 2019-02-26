@@ -4,6 +4,7 @@ import Comment from './Comment'
 import ModifyLog from './Modify-Log'
 import '../../css/index.css'
 import {connect} from "react-redux"
+import {getLogs} from '../action/index'
 
 
 const Panel = Collapse.Panel
@@ -45,6 +46,9 @@ class LogList extends Component {
             isModifyClick: false
         }
     }
+    componentWillMount() {
+        this.props.getLogs()
+    }
 
     handlerDisplayCommentLog = (index) => {
         this.setState({
@@ -83,8 +87,10 @@ class LogList extends Component {
                 border: 0,
                 color: '#F0F0F0',
             }
+            console.log('this.props.logs', this.props.logs)
             return (
-                this.props.logs.map((log, index) =>
+              <div>
+                  {this.props.logs.map((log, index) =>
                     isModifyClick && id === index ? <ModifyLog handlerHideModifyLog={this.handlerHideModifyLog}/>
                         : <Card
                             title={`${log.createTime}日志`}
@@ -126,7 +132,12 @@ class LogList extends Component {
                                 {/*</Collapse>*/}
                             {/*}*/}
                         </Card>
-                ))
+                ) }
+              </div>
+                )
+
+
+
         }
 
 
@@ -136,10 +147,10 @@ class LogList extends Component {
 
 
 
-const mapStateToProps = state => ({ logs: state.logs })
+const mapStateToProps = state => ({ logs: state.log })
 
-const mapDispatchToProps = (dispatch) => {
-
-}
+const mapDispatchToProps = dispatch => ({
+    getLogs:()=>dispatch(getLogs())
+})
 
 export default connect(mapStateToProps,mapDispatchToProps)(LogList)

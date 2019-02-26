@@ -10,13 +10,15 @@ import Router from './js/components/Router'
 import TopNav from './js/common/Top-Nav'
 import MenuBar from './js/common/Menu-Bar'
 import {Provider} from 'react-redux'
-import {createStore} from 'redux'
-import Reducers from './js/reducers/Reducer'
+import {applyMiddleware, createStore} from 'redux'
+import thunk from 'redux-thunk'
+import reducer from './js/reducers'
 
 const {Header, Content, Footer} = Layout;
 
-const store = createStore(Reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(reducer, applyMiddleware(thunk))
 //console.log(store.getState())
+
 
 ReactDOM.render(
     <Provider store={store}>
