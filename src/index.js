@@ -6,33 +6,42 @@ import {Layout} from 'antd'
 import {BrowserRouter} from 'react-router-dom'
 import Head from './js/common/Head'
 import Foot from './js/common/Foot'
-import ContentArea from './js/components/Content'
+import Router from './js/components/Router'
 import TopNav from './js/common/Top-Nav'
 import MenuBar from './js/common/Menu-Bar'
+import {Provider} from 'react-redux'
+import {applyMiddleware, createStore} from 'redux'
+import thunk from 'redux-thunk'
+import reducer from './js/reducers'
 
+const {Header, Content, Footer} = Layout;
 
-const {
-    Header, Content, Footer,
-} = Layout;
+const store = createStore(reducer, applyMiddleware(thunk))
+//console.log(store.getState())
+
 
 ReactDOM.render(
-    <Layout>
-        <Header className="header" style={{height: '113.6px', backgroundColor: '#595959'}}>
-            <Head/>
-        </Header>
-        <BrowserRouter>
-            <Content style={{padding: '0 50px'}}>
-                <TopNav/>
-                <Layout style={{padding: '24px 0', background: '#fff'}}>
-                    <MenuBar/>
-                    <ContentArea/>
-                </Layout>
-            </Content>
-        </BrowserRouter>
-        <Footer style={{textAlign: 'center'}}>
-            <Foot/>
-        </Footer>
-    </Layout>
+    <Provider store={store}>
+        <Layout>
+            <Header className="header" style={{height: '113.6px', backgroundColor: '#595959'}}>
+                <Head/>
+            </Header>
+            <BrowserRouter>
+                <Content style={{padding: '0 50px'}}>
+                    <TopNav/>
+                    <Layout style={{padding: '24px 0', background: '#fff'}}>
+                        <MenuBar/>
+                        <Content style={{ padding: '0 24px', minHeight: 280 }}>
+                            <Router/>
+                        </Content>
+                    </Layout>
+                </Content>
+            </BrowserRouter>
+            <Footer style={{textAlign: 'center'}}>
+                <Foot/>
+            </Footer>
+        </Layout>
+    </Provider>
     ,
     document.getElementById('root')
 );

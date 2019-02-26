@@ -9,4 +9,4 @@ const TopNav = () => (
     </Breadcrumb>
 )
 
-export default TopNav;
+export default TopNav

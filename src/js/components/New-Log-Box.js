@@ -1,51 +1,54 @@
 import React, {Component} from 'react'
+import moment from 'moment'
 import {DatePicker, Input, Radio, Button, Card, Form, Row, Col} from 'antd'
-//import moment from 'moment'
+import { addLog }  from "../action"
+import {connect} from 'react-redux'
 
 
-const {TextArea} = Input;
-//const RadioGroup = Radio.Group;
-//const dateFormat = 'YYYY/MM/DD';
 
-class newLogBox extends Component {
+const {TextArea} = Input
+
+class NewLogBox extends Component {
     state = {
         value: 1,
-    };
+    }
     onChange = (e) => {
         this.setState({
             value: e.target.value,
-        });
-    };
+        })
+    }
     handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
+        e.preventDefault()
+        this.props.form.validateFields((err,values) => {
+            console.log(values)
+            if (err) {
+                return
             }
-        });
-    };
+            this.props.addLog(values)
+        })
+    }
+    getNowTime = () => {
+        let date = new Date();
+        return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+    }
 
     render() {
-        const {getFieldDecorator} = this.props.form;
+        const {getFieldDecorator} = this.props.form
         const formItemLayout = {
             labelCol: {span: 6},
             wrapperCol: {span: 18},
-        };
-        const config = {
-            rules: [{type: 'object', message: 'Please select time!'}],
-        };
-        return (
-            <div>
+        }
+        return <div>
                 <Card
-                    title="新的日志"
+                    title='新的日志'
                     style={{marginTop: '30px'}}
                 >
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Item
                             {...formItemLayout}
-                            label="类型"
+                            label='类型'
                         >
-                            {getFieldDecorator('radio-group', { initialValue: 1 })(
+                            {getFieldDecorator('type', { initialValue: 1 })(
                                 <Radio.Group onChange={this.onChange}>
                                     <Radio value={1}>日志</Radio>
                                     <Radio value={2}>目标</Radio>
@@ -54,22 +57,24 @@ class newLogBox extends Component {
                         </Form.Item>
                         <Form.Item
                             {...formItemLayout}
-                            label="日期"
+                            label='日期'
                         >
-                            {getFieldDecorator('date-picker', config)(
-                                <DatePicker/>
+                            {getFieldDecorator('createTime', { initialValue: moment(this.getNowTime(),'YYYY-MM-DD')})(
+                                <DatePicker />
                             )}
                         </Form.Item>
                         <Form.Item
                             {...formItemLayout}
-                            label="总结内容"
+                            label='总结内容'
                         >
+                            {getFieldDecorator('content',{initialValue: ''})(
                             <TextArea rows={5}/>
+                            )}
                         </Form.Item>
                         <Row>
                             <Col span={24} style={{textAlign: 'right'}}>
-                                <Button type="primary" htmlType="submit" ghost>提交</Button>
-                                <Button style={{marginLeft: 25}} onClick={this.handleReset}>
+                                <Button type='primary' htmlType='submit' ghost>提交</Button>
+                                <Button style={{marginLeft: 25}} >
                                     取消
                                 </Button>
                             </Col>
@@ -77,10 +82,18 @@ class newLogBox extends Component {
                     </Form>
                 </Card>
             </div>
-        );
     }
 }
 
-newLogBox = Form.create({})(newLogBox);
+const mapStateToProps = state => ({
+    // console.log(state)
+})
 
-export default newLogBox;
+const mapDispatchToProps = dispatch => ({
+
+})
+
+
+const NewLogBoxForm = Form.create({})(NewLogBox)
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewLogBoxForm)

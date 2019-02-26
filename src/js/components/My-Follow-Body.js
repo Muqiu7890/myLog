@@ -1,28 +1,35 @@
 import React, {Component} from 'react'
-import MyFollow from './My-Follow'
-import {Input} from 'antd'
+import FollowList from './Follow-List'
+import {Form, Input} from 'antd'
 
-const Search = Input.Search;
+const Search = Input.Search
 
 class MyFollowBody extends Component {
-
     render() {
+        const formItemLayout = {
+            labelCol: {span: 2},
+            wrapperCol: {span: 8},
+        }
         return (
             <div>
-                <div style={{margin: '8px 10px 10px 0', fontSize: '16px', color: 'black', display: 'inline'}}>搜索并添加:</div>
-                <Search
-                    placeholder="input here"
-                    enterButton
-                    style={{width: 350}}
-                    onSearch={value => console.log(value)}
-                />
-                <div style={{marginTop: '10px'}}>
-                    <MyFollow/>
-                </div>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Item
+                        {...formItemLayout}
+                        label='搜索并添加：'
+                    >
+                        <Search
+                            placeholder='input search text'
+                            onSearch={value => console.log(value)}
+                            enterButton
+                        />
+                    </Form.Item>
+                </Form>
+                <FollowList/>
             </div>
 
-        );
+        )
     }
 }
 
-export default MyFollowBody;
+MyFollowBody = Form.create({})(MyFollowBody)
+export default MyFollowBody
