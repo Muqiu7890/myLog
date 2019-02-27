@@ -2,19 +2,19 @@ import { GET_LOG, } from '../constants/Action-Types'
 import * as request from '../constants/Fetch-Request'
 import HTTP from '../constants/Http-Code'
 
-export const getLogs = () => {
-  return dispatch => {
-    (async () => {
-      const res = await request.get('/api/logs')
-      if (res.status === HTTP.OK) {
-        dispatch({
-          type: GET_LOG,
-          log: res.body
-        })
-      }
-    })()
-  }
-}
+// export const getLogs = () => {
+//   return dispatch => {
+//     (async () => {
+//       const res = await request.get('/api/logs')
+//       if (res.status === HTTP.OK) {
+//         dispatch({
+//           type: GET_LOG,
+//           log: res.body
+//         })
+//       }
+//     })()
+//   }
+// }
 
 export const addLog = (log) => {
   return dispatch => {
@@ -22,7 +22,7 @@ export const addLog = (log) => {
       //console.log(log)
       const res = await request.post('/api/logs', log)
       if (res.status === HTTP.CREATED) {
-        dispatch(getLogs())
+        dispatch(getPageLogs())
       }
     })()
   }
@@ -33,7 +33,7 @@ export const updateLog = (id, log) => {
     (async () => {
       const res = await request.update(`/api/logs/${id}`, log)
       if (res.status === HTTP.NO_CONTENT) {
-        dispatch(getLogs())
+        dispatch(getPageLogs())
       }
     })()
   }
@@ -44,20 +44,22 @@ export const deleteLog = (id) => {
     (async () => {
       const res = await request.del(`/api/logs/${id}`)
       if (res.status === HTTP.NO_CONTENT) {
-        dispatch(getLogs())
+        dispatch(getPageLogs())
       }
 
     })()
   }
 }
 
-export const getPages = (page,pageSize) => {
-  console.log(page,pageSize)
+export const getPageLogs = (page = 0) => {
   return dispatch => {
     (async () => {
-      const res = await request.get(`/api/logs?page=${page}`,pageSize)
+      const res = await request.get(`/api/logs?page=${page}`)
       if (res.status === HTTP.OK) {
-        dispatch(getLogs())
+        dispatch({
+          type: GET_LOG,
+          log: res.body.content
+        })
       }
     })()
   }

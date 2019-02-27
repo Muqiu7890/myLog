@@ -3,7 +3,7 @@ import { Button, Card, Row, Col, Icon, Popconfirm } from 'antd'
 import Comment from './Comment'
 import ModifyLog from './Modify-Log'
 import { connect } from 'react-redux'
-import {getLogs ,deleteLog} from '../action/index'
+import {getPageLogs ,deleteLog} from '../action/index'
 
 class LogList extends Component {
   constructor (props) {
@@ -17,7 +17,7 @@ class LogList extends Component {
   }
 
   componentWillMount () {
-    this.props.getLogs()
+    this.props.getPageLogs()
   }
 
   handlerDisplayCommentLog = (logId) => {
@@ -108,7 +108,7 @@ class LogList extends Component {
 const mapStateToProps = state => ({ logs: state.log })
 
 const mapDispatchToProps = dispatch => ({
-  getLogs: () => dispatch(getLogs()),
+  getPageLogs: () => dispatch(getPageLogs()),
   deleteLog: (id) => dispatch(deleteLog(id))
 })
 

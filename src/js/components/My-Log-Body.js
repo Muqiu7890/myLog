@@ -3,17 +3,18 @@ import NewLogBox from './New-Log-Box'
 import LogList from './Log-List'
 import { Pagination } from 'antd'
 import {connect} from 'react-redux'
-import {getPages} from '../action'
+import {getPageLogs} from '../action'
 
 class MyLogBody extends Component {
   state = {
     current: 1
   }
-  onChange = (page,pageSize) => {
+  onChange = (page) => {
     this.setState({
       current: page
     })
-    this.props.getPages(page,pageSize)
+    // console.log(this.state.current,page)
+    this.props.getPageLogs(page-1)
   }
 
   render () {
@@ -31,7 +32,7 @@ const mapStateToProps = state => ({
 
 })
 const mapDispatchToProps = dispatch => ({
-  getPages: (page,pageSize) => dispatch(getPages(page,pageSize))
+  getPageLogs: (page) => dispatch(getPageLogs(page))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(MyLogBody)
