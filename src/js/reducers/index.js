@@ -1,4 +1,4 @@
-import log from './log'
+import log from './Log'
 import {combineReducers} from "redux";
 
 

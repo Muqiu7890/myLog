@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import { Icon,Layout,Menu } from 'antd'
-import { NavLink,withRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const {
     Sider
@@ -8,7 +8,7 @@ const {
 
 class MenuBar extends Component {
     componentDidMount() {
-        if(window.location.pathname != '/') {
+        if(window.location.pathname !== '/') {
             window.location.pathname = '/'
         }
     }

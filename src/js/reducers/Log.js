@@ -6,6 +6,5 @@ export default (state = [], action) => {
             return action.log
         default:
             return state
-
     }
 }
