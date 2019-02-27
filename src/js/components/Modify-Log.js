@@ -24,18 +24,14 @@ class ModifyLog extends Component {
                 return
             }
             values.create_time = moment(this.state.create_time).format('YYYY-MM-DD')
-            // console.log('values',values)
             this.props.updateLog(this.props.log.id,values)
-            this.props.handlerHideModifyLog(this.props.index)
+            this.props.handlerHideModifyLog()
         })
     }
     timeChange = (data, dateString) => {
         this.setState({
             create_time: dateString
         })
-    }
-    hideModifyLog = () => {
-        this.props.handlerHideModifyLog(this.props.index)
     }
 
     render() {
@@ -82,7 +78,7 @@ class ModifyLog extends Component {
                         <Row>
                             <Col span={24} style={{textAlign: 'right'}}>
                                 <Button type='primary' htmlType='submit' ghost>提交</Button>
-                                <Button style={{marginLeft: 25}} onClick={this.hideModifyLog}>
+                                <Button style={{marginLeft: 25}} onClick={this.props.handlerHideModifyLog}>
                                     取消
                                 </Button>
                             </Col>

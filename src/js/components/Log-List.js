@@ -10,7 +10,7 @@ class LogList extends Component {
     super(props)
 
     this.state = {
-      id: '',
+      logId: '',
       isCommentClick: false,
       isModifyClick: false
     }
@@ -20,36 +20,34 @@ class LogList extends Component {
     this.props.getLogs()
   }
 
-  handlerDisplayCommentLog = (index) => {
+  handlerDisplayCommentLog = (logId) => {
     this.setState({
-      id: index,
+      logId,
       isCommentClick: true
     })
   }
 
-  handlerHideCommentLog = (index) => {
+  handlerHideCommentLog = () => {
     this.setState({
-      id: index,
       isCommentClick: false
     })
   }
 
-  handlerDisplayModifyLog = (index) => {
+  handlerDisplayModifyLog = (logId) => {
     this.setState({
-      id: index,
+      logId,
       isModifyClick: true
     })
   }
 
-  handlerHideModifyLog = (index) => {
+  handlerHideModifyLog = () => {
     this.setState({
-      id: index,
       isModifyClick: false
     })
   }
 
   render () {
-    const { id, isCommentClick, isModifyClick } = this.state
+    const { logId, isCommentClick, isModifyClick } = this.state
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,
@@ -59,8 +57,8 @@ class LogList extends Component {
     return (
       <div>
         {this.props.logs.map((log, index) =>
-          isModifyClick && id === index ? <ModifyLog log={log} getLogs={this.props.getLogs} handlerHideModifyLog={this.handlerHideModifyLog} key={index}/>
-            : <Card key={index}
+          isModifyClick && logId === log.id ? <ModifyLog log={log} getLogs={this.props.getLogs} handlerHideModifyLog={this.handlerHideModifyLog} key={log.id}/>
+            : <Card key={log.id}
               title={`${log.create_time.toString().substr(0,10)} ${log.type === 1 ? '日志' : '目标'}`}
               style={{ marginTop: '30px' }}
               extra={
@@ -76,15 +74,15 @@ class LogList extends Component {
               <Row style={{ marginTop: '10px' }}>
                 <Col span={24} style={{ textAlign: 'right' }}>
                   <Button type='primary' htmlType='submit' ghost
-                          onClick={this.handlerDisplayModifyLog.bind(this, index) } >修改日志</Button>
+                          onClick={this.handlerDisplayModifyLog.bind(this, log.id) } >修改日志</Button>
                   <Button type='primary' ghost style={{ marginLeft: 25 }}
-                          onClick={this.handlerDisplayCommentLog.bind(this, index)}>
+                          onClick={this.handlerDisplayCommentLog.bind(this, log.id)}>
                     评论日志
                   </Button>
                 </Col>
               </Row>
               {
-                isCommentClick && id === index ? <Comment handlerHideCommentLog={this.handlerHideCommentLog}/> : ''
+                isCommentClick && logId === log.id ? <Comment handlerHideCommentLog={this.handlerHideCommentLog}/> : ''
               }
               {/*{*/}
               {/*!!log.comments.length && <Collapse className='panelHeader'*/}
