@@ -32,8 +32,7 @@ export const updateLog = (id, log) => {
   return dispatch => {
     (async () => {
       const res = await request.update(`/api/logs/${id}`, log)
-      // console.log(res.status)
-      if (res.status === HTTP.CREATED) {
+      if (res.status === HTTP.NO_CONTENT) {
         dispatch(getLogs())
       }
     })()
@@ -44,7 +43,7 @@ export const deleteLog = (id) => {
   return dispatch => {
     (async () => {
       const res = await request.del(`/api/logs/${id}`)
-      if (res.status === HTTP.CREATED) {
+      if (res.status === HTTP.NO_CONTENT) {
         dispatch(getLogs())
       }
 

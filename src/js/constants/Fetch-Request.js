@@ -38,15 +38,11 @@ export const update = async (url, data) => {
     const res = await fetch(url, {
       method: 'PUT',
       headers: new Headers({
-        'Content-Type': 'application/json;charset=utf-8'
+        'Content-Type': 'application/json;charset=utf-8',
+        'Accept': 'application/json',
       }),
       body: JSON.stringify(data)
     })
-    if (!res.ok) {
-      //console.log()
-      return { status: res.status }
-    }
-    // console.log(res.status)
     return { status: res.status }
   } catch (ex) {
     return { status: ex.status }
@@ -60,9 +56,6 @@ export const del = async (url) => {
         'Content-Type': 'application/json;charset=utf-8'
       })
     })
-    if (!res.ok) {
-      return { status: res.status }
-    }
     return { status: res.status }
   } catch (ex) {
     return { status: ex.status }
