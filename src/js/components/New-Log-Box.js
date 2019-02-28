@@ -29,7 +29,13 @@ class NewLogBox extends Component {
         return
       }
       values.create_time = moment(this.state.create_time).format(format)
+      values.user_id=6
+      console.log("6666",values)
       this.props.addLog(values)
+      this.props.form.setFieldsValue({
+        content: ''
+      })
+
     })
   }
   getNowTime = () => {

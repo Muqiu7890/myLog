@@ -19,7 +19,6 @@ import HTTP from '../constants/Http-Code'
 export const addLog = (log) => {
   return dispatch => {
     (async () => {
-      //console.log(log)
       const res = await request.post('/api/logs', log)
       if (res.status === HTTP.CREATED) {
         dispatch(getPageLogs())
@@ -54,11 +53,11 @@ export const deleteLog = (id) => {
 export const getPageLogs = (page = 0) => {
   return dispatch => {
     (async () => {
-      const res = await request.get(`/api/logs?page=${page}`)
+      const res = await request.get(`/api/logs/6?page=${page}`)
       if (res.status === HTTP.OK) {
         dispatch({
           type: GET_LOG,
-          log: res.body.content
+          log: res.body
         })
       }
     })()

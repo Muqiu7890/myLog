@@ -36,7 +36,7 @@ class LogList extends Component {
   handlerDisplayModifyLog = (logId) => {
     this.setState({
       logId,
-      isModifyClick: true
+      isModifyClick: !this.state.isModifyClick
     })
   }
 
@@ -57,7 +57,7 @@ class LogList extends Component {
     return (
       <div>
         {this.props.logs.map((log, index) =>
-          isModifyClick && logId === log.id ? <ModifyLog log={log} getLogs={this.props.getLogs} handlerHideModifyLog={this.handlerHideModifyLog} key={log.id}/>
+          isModifyClick && logId === log.id ? <ModifyLog log={log}  handlerHideModifyLog={this.handlerHideModifyLog} key={log.id}/>
             : <Card key={log.id}
               title={`${log.create_time.toString().substr(0,10)} ${log.type === 1 ? '日志' : '目标'}`}
               style={{ marginTop: '30px' }}

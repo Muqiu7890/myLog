@@ -13,7 +13,6 @@ class MyLogBody extends Component {
     this.setState({
       current: page
     })
-    // console.log(this.state.current,page)
     this.props.getPageLogs(page-1)
   }
 
@@ -22,7 +21,7 @@ class MyLogBody extends Component {
       <div>
         <NewLogBox/>
         <LogList/>
-        <Pagination style={{ marginTop: '40px' }} defaultCurrent={this.state.current} total={20} onChange={this.onChange}/>
+        <Pagination style={{ marginTop: '40px' }} defaultCurrent={this.state.current} total={50} onChange={this.onChange}/>
       </div>
     )
   }
