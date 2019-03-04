@@ -3,7 +3,7 @@ import { Button, Card, Row, Col, Icon, Popconfirm } from 'antd'
 import Comment from './Comment'
 import ModifyLog from './Modify-Log'
 import { connect } from 'react-redux'
-import {getPageLogs ,deleteLog} from '../action/index'
+import { getPageLogs, deleteLog } from '../action/index'
 
 class LogList extends Component {
   constructor (props) {
@@ -47,6 +47,9 @@ class LogList extends Component {
   }
 
   render () {
+    // console.log('1',this.props.users);
+    //console.log('2',this.props.users)
+
     const { logId, isCommentClick, isModifyClick } = this.state
     const customPanelStyle = {
       borderRadius: 4,
@@ -57,15 +60,17 @@ class LogList extends Component {
     return (
       <div>
         {this.props.logs.map((log, index) =>
-          isModifyClick && logId === log.id ? <ModifyLog log={log}  handlerHideModifyLog={this.handlerHideModifyLog} key={log.id}/>
+          isModifyClick && logId === log.id ? <ModifyLog log={log} handlerHideModifyLog={this.handlerHideModifyLog}
+                                                         key={log.id}/>
             : <Card key={log.id}
-              title={`${log.create_time.toString().substr(0,10)} ${log.type === 1 ? '日志' : '目标'}`}
-              style={{ marginTop: '30px' }}
-              extra={
-                <Popconfirm title='确认删除吗？' okText='确认' cancelText='取消' onConfirm={() => {this.props.deleteLog(log.id)}}>
-                  <a href='#'><Icon type='delete'/></a>
-                </Popconfirm>
-              }
+                    title={`${log.create_time.toString().substr(0, 10)} ${log.type === 1 ? '日志' : '目标'}`}
+                    style={{ marginTop: '30px' }}
+                    extra={
+                      <Popconfirm title='确认删除吗？' okText='确认' cancelText='取消'
+                                  onConfirm={() => {this.props.deleteLog(log.id)}}>
+                        <a href='#'><Icon type='delete'/></a>
+                      </Popconfirm>
+                    }
             >
               <div style={{ background: '#F0F0F0', padding: '8px' }}>
                 <div style={{ padding: '10px 0 10px 17px', fontSize: '15px', background: 'white' }}>{log.content}</div>
@@ -74,7 +79,7 @@ class LogList extends Component {
               <Row style={{ marginTop: '10px' }}>
                 <Col span={24} style={{ textAlign: 'right' }}>
                   <Button type='primary' htmlType='submit' ghost
-                          onClick={this.handlerDisplayModifyLog.bind(this, log.id) } >修改日志</Button>
+                          onClick={this.handlerDisplayModifyLog.bind(this, log.id)}>修改日志</Button>
                   <Button type='primary' ghost style={{ marginLeft: 25 }}
                           onClick={this.handlerDisplayCommentLog.bind(this, log.id)}>
                     评论日志
@@ -105,11 +110,13 @@ class LogList extends Component {
   }
 }
 
-const mapStateToProps = state => ({ logs: state.log })
+const mapStateToProps = state => ({
+  logs: state.log,
+})
 
 const mapDispatchToProps = dispatch => ({
   getPageLogs: () => dispatch(getPageLogs()),
-  deleteLog: (id) => dispatch(deleteLog(id))
+  deleteLog: (id) => dispatch(deleteLog(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogList)

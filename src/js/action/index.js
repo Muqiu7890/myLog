@@ -1,4 +1,4 @@
-import { GET_LOG, } from '../constants/Action-Types'
+import { GET_LOG } from '../constants/Action-Types'
 import * as request from '../constants/Fetch-Request'
 import HTTP from '../constants/Http-Code'
 
@@ -63,4 +63,5 @@ export const getPageLogs = (page = 0) => {
     })()
   }
 }
+
 
