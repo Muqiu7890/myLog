@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0790f524-784c-470c-9b47-9936e6209d28" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/action/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/action/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/components/Follow-List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/components/Follow-List.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/components/Log-List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/components/Log-List.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/constants/Action-Types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/constants/Action-Types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/js/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/js/reducers/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -107,7 +102,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/components/Follow-List.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="215">
               <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
@@ -346,12 +341,12 @@
       <workItem from="1551402802542" duration="4328000" />
       <workItem from="1551416925293" duration="6356000" />
       <workItem from="1551614608868" duration="930000" />
-      <workItem from="1551660077247" duration="343000" />
+      <workItem from="1551660077247" duration="1377000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97896000" />
+    <option name="totallyTimeSpent" value="98930000" />
   </component>
   <component name="TodoView" selected-index="3" />
   <component name="ToolWindowManager">
@@ -700,7 +695,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/components/Follow-List.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="215">
           <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
