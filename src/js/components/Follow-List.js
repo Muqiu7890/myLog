@@ -10,7 +10,6 @@ class FollowList extends Component {
   }
 
   unfollow = (followed_id) => {
-    console.log(followed_id)
     this.props.cancelFollowedUser(followed_id)
   }
 

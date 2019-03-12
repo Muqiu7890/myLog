@@ -10,7 +10,6 @@ class Comment extends Component {
     }
 
     render() {
-        //const {getFieldDecorator} = this.props.form
         const formItemLayout = {
             labelCol: {span: 6},
             wrapperCol: {span: 18},
