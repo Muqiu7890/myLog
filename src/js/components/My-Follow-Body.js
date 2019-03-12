@@ -3,6 +3,8 @@ import FollowList from './Follow-List'
 import { Form, AutoComplete } from 'antd'
 import * as request from '../constants/Fetch-Request'
 import HTTP from '../constants/Http-Code'
+import {addFollowUser} from '../action/Follows'
+import { connect } from 'react-redux'
 
 function getUsers (name, callback) {
     (async () => {
@@ -18,7 +20,10 @@ class MyFollowBody extends Component {
   }
 
   onSelect = (value) => {
-    console.log('onSelect', value)
+    getUsers(value,(data) => {
+      const newFollow = {user_id:6, followed_id: data[0].id}
+      this.props.addFollowUser(newFollow)
+    })
   }
 
   handleSearch = (value) => {
@@ -66,6 +71,9 @@ class MyFollowBody extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  addFollowUser: (newFollow) => dispatch(addFollowUser(newFollow))
+})
 
 MyFollowBody = Form.create({})(MyFollowBody)
-export default MyFollowBody
+export default connect(null,mapDispatchToProps)(MyFollowBody)

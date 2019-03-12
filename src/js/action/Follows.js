@@ -26,3 +26,14 @@ export const cancelFollowedUser = (followed_id) => {
     })()
   }
 }
+
+export const addFollowUser = (followed) => {
+  return dispatch => {
+    (async () => {
+      const res = await request.post('/api/follows',followed)
+      if(res.status === HTTP.CREATED){
+        dispatch(getAllFollowedUsers())
+      }
+    })()
+  }
+}
