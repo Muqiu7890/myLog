@@ -21,15 +21,20 @@ class MyLogBody extends Component {
       <div>
         <NewLogBox/>
         <LogList/>
-        <Pagination style={{ marginTop: '40px' }} defaultCurrent={this.state.current} total={50} onChange={this.onChange}/>
+        <Pagination style={{ marginTop: '40px' }}
+                    defaultCurrent={this.state.current}
+                    total={this.props.logs.totalElements}
+                    pageSize={5}
+                    onChange={this.onChange}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-
+  logs: state.log
 })
+
 const mapDispatchToProps = dispatch => ({
   getPageLogs: (page) => dispatch(getPageLogs(page))
 })

@@ -21,7 +21,7 @@ class FollowList extends Component {
             <Col span={8} key={index}>
               <Card style={{ width: 350, margin: '10px 20px 10px 0' }}
                     title={
-                      <NavLink to='/follow/1'>
+                      <NavLink to={`/follow/${userInfo.user.id}`}>
                         <div style={{ margin: '0 auto', textAlign: 'center', marginTop: '15px' }}>
                           <Avatar
                             style={{
