@@ -24,6 +24,7 @@ class ModifyLog extends Component {
                 return
             }
             values.create_time = moment(this.state.create_time).format('YYYY-MM-DD')
+            values.user_id=6
             this.props.updateLog(this.props.log.id,values)
             this.props.handlerHideModifyLog()
         })

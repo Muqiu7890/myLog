@@ -60,13 +60,13 @@ class ExcellentLog extends Component {
       arrID: index,
       excId: excLogID
     })
-    console.log('id',excLogID)
+    console.log('id', excLogID)
     this.props.getExcellentLog()
     const excLog = {
       'type': this.props.excLogs[index].type,
       'create_time': this.props.excLogs[index].createTime,
       'content': this.props.excLogs[index].content,
-      'exc': 0,
+      'exc': 1,
       'user_id': this.props.excLogs[index].userId
     }
     this.props.updateLog(excLogID, excLog)
@@ -74,7 +74,7 @@ class ExcellentLog extends Component {
   }
 
   render () {
-    console.log('this.props.excLogs',this.props.excLogs);
+    console.log('this.props.excLogs', this.props.excLogs)
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,
@@ -83,7 +83,6 @@ class ExcellentLog extends Component {
     }
 
     const { id, isCommentClick, allLogExtended, logExtended } = this.state
-    const name=this.props.excLogs.name+`@`+this.props.excLogs.nickname
 
     return (
       <div style={{ backgroundColor: 'white' }}>
@@ -99,7 +98,7 @@ class ExcellentLog extends Component {
           this.props.excLogs.map((excLog, index) =>
             <Card
               key={index}
-              title={excLog.name+`@(`+excLog.nickname+`)`}
+              title={excLog.nickname + excLog.type === 1 ? '日志' : '目标'}
               extra={<span>{excLog.createTime.toString().slice(0, 10)}</span>}
               style={{ width: '100%', marginBottom: '40px' }}
             >
@@ -123,7 +122,7 @@ class ExcellentLog extends Component {
                   <Button type='primary' ghost style={{ marginLeft: 25 }}
                           onClick={this.cancelExcellentLog.bind(this, excLog.id, index)}
                   >
-                    取消优秀日志
+                    推荐优秀日志
                   </Button>
                 </Col>
               </Row>

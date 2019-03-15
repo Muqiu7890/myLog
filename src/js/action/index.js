@@ -2,19 +2,6 @@ import { GET_LOG } from '../constants/Action-Types'
 import * as request from '../constants/Fetch-Request'
 import HTTP from '../constants/Http-Code'
 
-// export const getLogs = () => {
-//   return dispatch => {
-//     (async () => {
-//       const res = await request.get('/api/logs')
-//       if (res.status === HTTP.OK) {
-//         dispatch({
-//           type: GET_LOG,
-//           log: res.body
-//         })
-//       }
-//     })()
-//   }
-// }
 
 export const addLog = (log) => {
   return dispatch => {
@@ -45,7 +32,6 @@ export const deleteLog = (id) => {
       if (res.status === HTTP.NO_CONTENT) {
         dispatch(getPageLogs())
       }
-
     })()
   }
 }

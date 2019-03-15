@@ -11,7 +11,6 @@ export const getUsers = () => {
           type: GET_USER,
           users: res.body
         })
-        //console.log('1user',res.body)
       }
     })()
   }
@@ -20,13 +19,12 @@ export const getUsers = () => {
 export const getAllFollowedUsers = () => {
   return dispatch => {
     (async () => {
-      const res =await request.get(`api/users/6`)
+      const res =await request.get(`api/follows`)
       if (res.status === HTTP.OK){
         dispatch({
           type: GET_FOLLOWED_USER,
           followed: res.body
         })
-        console.log(res.body)
       }
     })()
   }
