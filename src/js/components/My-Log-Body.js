@@ -23,7 +23,7 @@ class MyLogBody extends Component {
         <LogList/>
         <Pagination style={{ marginTop: '40px' }}
                     defaultCurrent={this.state.current}
-                    total={this.props.logs.totalElements}
+                    total={Number(this.props.logs.totalElements)}
                     pageSize={5}
                     onChange={this.onChange}/>
       </div>

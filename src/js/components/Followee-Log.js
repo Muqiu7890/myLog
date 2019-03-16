@@ -89,7 +89,7 @@ class FolloweeLog extends Component {
               {/*}*/}
             </Card>
         )}
-        <Pagination style={{ marginTop: '40px' }} defaultCurrent={this.state.current} total={totalElements} pageSize={5}
+        <Pagination style={{ marginTop: '40px' }} defaultCurrent={this.state.current} total={Number(totalElements)} pageSize={5}
                     onChange={this.onChange}/>
       </div>
     )
