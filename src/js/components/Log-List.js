@@ -48,7 +48,7 @@ class LogList extends Component {
 
   render () {
     const { logId, isCommentClick, isModifyClick } = this.state
-    const { content } = this.props.followLogs
+    const { content } = this.props.logs
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,

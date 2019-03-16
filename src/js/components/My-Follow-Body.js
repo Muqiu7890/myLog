@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FollowList from './Follow-List'
-import { Form, AutoComplete } from 'antd'
+import { Form, AutoComplete, message } from 'antd'
 import * as request from '../constants/Fetch-Request'
 import HTTP from '../constants/Http-Code'
 import {addFollowUser} from '../action/Follows'
@@ -24,6 +24,7 @@ class MyFollowBody extends Component {
       const newFollow = {user_id:6, followed_id: data[0].id}
       this.props.addFollowUser(newFollow)
     })
+    message.success('关注成功')
   }
 
   handleSearch = (value) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Avatar, Col, Row, } from 'antd'
+import { Card, Avatar, Col, Row, message } from 'antd'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getAllFollowedUsers,cancelFollowedUser } from '../action/Follows'
@@ -11,6 +11,7 @@ class FollowList extends Component {
 
   unfollow = (followed_id) => {
     this.props.cancelFollowedUser(followed_id)
+    message.success('取消关注成功')
   }
 
   render () {
