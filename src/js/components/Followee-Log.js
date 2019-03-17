@@ -8,7 +8,6 @@ import { getUser } from '../action/User'
 class FolloweeLog extends Component {
   constructor (props) {
     super(props)
-
     this.state = {
       logId: '',
       isCommentClick: false,
