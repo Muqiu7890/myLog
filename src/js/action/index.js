@@ -13,12 +13,12 @@ export const addLog = (log) => {
   }
 }
 
-export const updateLog = (id, log,user_id) => {
+export const updateLog = (id, log, user_id) => {
   return dispatch => {
     (async () => {
       const res = await request.update(`/api/logs/${id}`, log)
       if (res.status === HTTP.NO_CONTENT) {
-        dispatch(getPageLogs(0,user_id))
+        dispatch(getPageLogs(0, user_id))
       }
     })()
   }

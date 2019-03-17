@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import 'antd/dist/antd.css'
 import { Card, Button, Pagination, Icon, Collapse, message } from 'antd'
 
-import { Row, Col} from 'antd'
+import { Row, Col } from 'antd'
 import Markdown from 'react-markdown'
 import '../../css/index.css'
 
@@ -30,12 +30,11 @@ class ExcellentLog extends Component {
     this.setState({
       current: page
     })
-    this.props.getExcellentLog(page-1,1)
-    console.log('his.props.getExcellentLog',this.props.getExcellentLog)
+    this.props.getExcellentLog(page - 1, 1)
   }
 
   componentWillMount () {
-    this.props.getExcellentLog(0,1)
+    this.props.getExcellentLog(0, 1)
   }
 
   handlerAllLogExtended = () => {
@@ -69,11 +68,8 @@ class ExcellentLog extends Component {
       arrID: index,
       excId: excLogID
     })
-    console.log('id',excLogID)
-    console.log('index',index)
-    console.log('this.props.excLogs',this.props.excLogs)
 
-    this.props.getExcellentLog(0,1)
+    this.props.getExcellentLog(0, 1)
     const excLog = {
       'type': this.props.excLogs.content[index].type,
       'create_time': this.props.excLogs.content[index].createTime,
@@ -82,7 +78,7 @@ class ExcellentLog extends Component {
       'user_id': this.props.excLogs.content[index].userId
     }
     this.props.updateLog(excLogID, excLog)
-    this.props.getExcellentLog(0,1)
+    this.props.getExcellentLog(0, 1)
     message.success('已成功取消优秀日志')
   }
 
@@ -95,7 +91,7 @@ class ExcellentLog extends Component {
     }
 
     const { id, isCommentClick, allLogExtended, logExtended } = this.state
-    const { content,total} = this.props.excLogs
+    const { content, total } = this.props.excLogs
 
     return (
       <div style={{ backgroundColor: 'white' }}>
@@ -111,12 +107,12 @@ class ExcellentLog extends Component {
           content.map((excLog, index) =>
             <Card
               key={index}
-              title={excLog.name+`@(`+excLog.nickname+`)`}
+              title={excLog.name + `@(` + excLog.nickname + `)`}
               extra={<span>{excLog.createTime.toString().slice(0, 10)}</span>}
               style={{ width: '100%', marginBottom: '40px' }}
             >
-              <div style={{    padding: '8px', background: '#f0f0f0'}}>
-                <div style={{  padding: '8px' ,background: '#fff' }}>
+              <div style={{ padding: '8px', background: '#f0f0f0' }}>
+                <div style={{ padding: '8px', background: '#fff' }}>
                   {
                     (logExtended && id === index) || allLogExtended ? <Markdown
                       source={excLog.content}/> : <Markdown
@@ -179,7 +175,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getExcellentLog: (page,exc) => dispatch(getExcellentLog(page,exc)),
+  getExcellentLog: (page, exc) => dispatch(getExcellentLog(page, exc)),
   updateLog: (id, log) => dispatch(updateLog(id, log))
 })
 

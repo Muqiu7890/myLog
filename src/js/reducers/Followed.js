@@ -1,6 +1,6 @@
-import {GET_FOLLOWED_USER} from "../constants/Action-Types";
+import { GET_FOLLOWED_USER } from '../constants/Action-Types'
 
-const followed =  (state = [], action) => {
+const followed = (state = [], action) => {
   switch (action.type) {
     case GET_FOLLOWED_USER:
       return action.followed

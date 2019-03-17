@@ -1,15 +1,15 @@
-import {GET_LOG} from "../constants/Action-Types";
+import { GET_LOG } from '../constants/Action-Types'
 
 const init = {
-    content: [],
-    totalElements: ''
+  content: [],
+  totalElements: ''
 }
 
 export default (state = init, action) => {
-    switch (action.type) {
-        case GET_LOG:
-            return action.log
-        default:
-            return state
-    }
+  switch (action.type) {
+    case GET_LOG:
+      return action.log
+    default:
+      return state
+  }
 }

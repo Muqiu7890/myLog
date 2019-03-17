@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card, Row, Col, Icon, Popconfirm, Pagination, message} from 'antd'
+import { Button, Card, Row, Col, Icon, Popconfirm, Pagination, message } from 'antd'
 import Comment from './Comment'
 import { connect } from 'react-redux'
 import { getPageLogs, updateLog } from '../action/index'
@@ -58,19 +58,17 @@ class FolloweeLog extends Component {
 
     this.props.updateLog(logId, log, userId)
 
-    if(this.props.followLogs.content[index].exc===1){
+    if (this.props.followLogs.content[index].exc === 1) {
       message.warning('已经被推荐')
-    }else {
+    } else {
       message.success('推荐成功')
     }
-
 
   }
 
   render () {
     const { logId, isCommentClick } = this.state
     const { content, total } = this.props.followLogs
-    console.log('this.props.followLogs2', this.props.followLogs)
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,

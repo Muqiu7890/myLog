@@ -1,4 +1,4 @@
-import {GET_EXCELLENT_LOG} from "../constants/Action-Types";
+import { GET_EXCELLENT_LOG } from '../constants/Action-Types'
 
 const init = {
   content: [],
