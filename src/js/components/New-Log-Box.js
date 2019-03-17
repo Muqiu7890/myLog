@@ -29,8 +29,7 @@ class NewLogBox extends Component {
         return
       }
       values.create_time = moment(this.state.create_time).format(format)
-      values.user_id=6
-      console.log("6666",values)
+      values.user_id = 6
       this.props.addLog(values)
       this.props.form.setFieldsValue({
         content: ''
@@ -43,7 +42,7 @@ class NewLogBox extends Component {
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
   }
   handleReset = () => {
-    this.props.form.resetFields();
+    this.props.form.resetFields()
   }
 
   render () {

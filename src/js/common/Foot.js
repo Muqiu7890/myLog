@@ -2,9 +2,9 @@ import React from 'react'
 import 'antd/dist/antd.css'
 
 const Foot = () => (
-    <div>
+  <div>
     ThoughtWorks Learning Platform ©2019
-    </div>
+  </div>
 )
 
 export default Foot

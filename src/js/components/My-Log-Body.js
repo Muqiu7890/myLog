@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import NewLogBox from './New-Log-Box'
 import LogList from './Log-List'
 import { Pagination } from 'antd'
-import {connect} from 'react-redux'
-import {getPageLogs} from '../action'
+import { connect } from 'react-redux'
+import { getPageLogs } from '../action'
 
 class MyLogBody extends Component {
   state = {
@@ -13,7 +13,7 @@ class MyLogBody extends Component {
     this.setState({
       current: page
     })
-    this.props.getPageLogs(page-1)
+    this.props.getPageLogs(page - 1)
   }
 
   render () {
@@ -21,17 +21,22 @@ class MyLogBody extends Component {
       <div>
         <NewLogBox/>
         <LogList/>
-        <Pagination style={{ marginTop: '40px' }} defaultCurrent={this.state.current} total={50} onChange={this.onChange}/>
+        <Pagination style={{ marginTop: '40px' }}
+                    defaultCurrent={this.state.current}
+                    total={this.props.logs.total}
+                    pageSize={5}
+                    onChange={this.onChange}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-
+  logs: state.log
 })
+
 const mapDispatchToProps = dispatch => ({
   getPageLogs: (page) => dispatch(getPageLogs(page))
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(MyLogBody)
+export default connect(mapStateToProps, mapDispatchToProps)(MyLogBody)

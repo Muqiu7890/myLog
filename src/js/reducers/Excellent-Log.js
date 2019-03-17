@@ -1,6 +1,11 @@
-import {GET_EXCELLENT_LOG} from "../constants/Action-Types";
+import { GET_EXCELLENT_LOG } from '../constants/Action-Types'
 
-const excLog = (state = [], action) => {
+const init = {
+  content: [],
+  totalElements: ''
+}
+
+const excLog = (state = init, action) => {
   switch (action.type) {
     case GET_EXCELLENT_LOG:
       return action.excLog

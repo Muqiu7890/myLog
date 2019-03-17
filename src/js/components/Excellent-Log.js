@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
-import { Card, Button, Pagination, Icon, Collapse } from 'antd'
+import { Card, Button, Pagination, Icon, Collapse, message } from 'antd'
 
 import { Row, Col } from 'antd'
 import Markdown from 'react-markdown'
@@ -21,12 +21,20 @@ class ExcellentLog extends Component {
       id: '',
       isCommentClick: false,
       logExtended: false,
-      allLogExtended: false
+      allLogExtended: false,
+      current: 1
     }
   }
 
+  onChange = (page) => {
+    this.setState({
+      current: page
+    })
+    this.props.getExcellentLog(page - 1, 1)
+  }
+
   componentWillMount () {
-    this.props.getExcellentLog()
+    this.props.getExcellentLog(0, 1)
   }
 
   handlerAllLogExtended = () => {
@@ -60,21 +68,21 @@ class ExcellentLog extends Component {
       arrID: index,
       excId: excLogID
     })
-    console.log('id',excLogID)
-    this.props.getExcellentLog()
+
+    this.props.getExcellentLog(0, 1)
     const excLog = {
-      'type': this.props.excLogs[index].type,
-      'create_time': this.props.excLogs[index].createTime,
-      'content': this.props.excLogs[index].content,
+      'type': this.props.excLogs.content[index].type,
+      'create_time': this.props.excLogs.content[index].createTime,
+      'content': this.props.excLogs.content[index].content,
       'exc': 0,
-      'user_id': this.props.excLogs[index].userId
+      'user_id': this.props.excLogs.content[index].userId
     }
     this.props.updateLog(excLogID, excLog)
-    this.props.getExcellentLog()
+    this.props.getExcellentLog(0, 1)
+    message.success('已成功取消优秀日志')
   }
 
   render () {
-    console.log('this.props.excLogs',this.props.excLogs);
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,
@@ -83,7 +91,7 @@ class ExcellentLog extends Component {
     }
 
     const { id, isCommentClick, allLogExtended, logExtended } = this.state
-    const name=this.props.excLogs.name+`@`+this.props.excLogs.nickname
+    const { content, total } = this.props.excLogs
 
     return (
       <div style={{ backgroundColor: 'white' }}>
@@ -96,20 +104,23 @@ class ExcellentLog extends Component {
           </Row>
         </div>
         {
-          this.props.excLogs.map((excLog, index) =>
+          content.map((excLog, index) =>
             <Card
               key={index}
-              title={excLog.name+`@(`+excLog.nickname+`)`}
+              title={excLog.name + `@(` + excLog.nickname + `)`}
               extra={<span>{excLog.createTime.toString().slice(0, 10)}</span>}
               style={{ width: '100%', marginBottom: '40px' }}
             >
-              <div style={{ background: '#F0F0F0', padding: '8px' }}>
-                {
-                  (logExtended && id === index) || allLogExtended ? <Markdown
-                    source={excLog.content}/> : <Markdown
-                    source={excLog.content.substr(0, 150) + '...'}/>
-                }
+              <div style={{ padding: '8px', background: '#f0f0f0' }}>
+                <div style={{ padding: '8px', background: '#fff' }}>
+                  {
+                    (logExtended && id === index) || allLogExtended ? <Markdown
+                      source={excLog.content}/> : <Markdown
+                      source={excLog.content.substr(0, 150) + '...'}/>
+                  }
+                </div>
               </div>
+
               {
                 excLog.content.length > 100 &&
                 <div className='toggle-btn'
@@ -148,7 +159,11 @@ class ExcellentLog extends Component {
             </Card>
           )}
         <div style={{ marginTop: '100px' }}>
-          <Pagination defaultCurrent={1} total={50}></Pagination>
+          <Pagination style={{ marginTop: '40px' }}
+                      defaultCurrent={this.state.current}
+                      total={total}
+                      pageSize={5}
+                      onChange={this.onChange}/>
         </div>
       </div>
     )
@@ -160,7 +175,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getExcellentLog: () => dispatch(getExcellentLog()),
+  getExcellentLog: (page, exc) => dispatch(getExcellentLog(page, exc)),
   updateLog: (id, log) => dispatch(updateLog(id, log))
 })
 

@@ -47,13 +47,9 @@ class LogList extends Component {
   }
 
   render () {
-    console.log('logs',this.props.logs)
-
-    // console.log('1',this.props.users);
-    //console.log('2',this.props.users)
-    console.log('this.props.logs[1]',this.props.logs)
 
     const { logId, isCommentClick, isModifyClick } = this.state
+    const { content } = this.props.logs
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,
@@ -62,7 +58,7 @@ class LogList extends Component {
     }
     return (
       <div>
-        {this.props.logs.map((log, index) =>
+        {content.map((log, index) =>
           isModifyClick && logId === log.id ? <ModifyLog log={log} handlerHideModifyLog={this.handlerHideModifyLog}
                                                          key={log.id}/>
             : <Card key={log.id}
