@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Card, Row, Col, Icon, Popconfirm, Pagination } from 'antd'
 import Comment from './Comment'
 import { connect } from 'react-redux'
-import { getPageLogs } from '../action/index'
+import { getPageLogs, updateLog } from '../action/index'
 import { getUser } from '../action/User'
 
 class FolloweeLog extends Component {
@@ -41,9 +41,34 @@ class FolloweeLog extends Component {
     })
   }
 
+  cancelExcellentLog = (logId, index, userId) => {
+    this.setState({
+      arrId: index,
+      logId: logId,
+      userId: userId
+    })
+
+    const log = {
+      'type': this.props.followLogs.content[index].type,
+      'create_time': this.props.followLogs.content[index].create_time,
+      'content': this.props.followLogs.content[index].content,
+      'exc': 1,
+      'user_id': this.props.followLogs.content[index].user_id
+    }
+
+    console.log('userId',userId)
+    console.log('logId',logId)
+    this.props.updateLog(logId, log, userId)
+    console.log('this.props.followLogs.content[index].user_id2', this.props.followLogs.content[index].user_id)
+    console.log('window.location.pathname.slice(8)',window.location.pathname.slice(8))
+
+    // this.props.getPageLogs(0, window.location.pathname.slice(8))
+  }
+
   render () {
     const { logId, isCommentClick } = this.state
-    const { content, totalElements } = this.props.followLogs
+    const { content, total } = this.props.followLogs
+    console.log('this.props.followLogs2', this.props.followLogs)
     const customPanelStyle = {
       borderRadius: 4,
       marginBottom: 24,
@@ -52,44 +77,46 @@ class FolloweeLog extends Component {
     }
     return (
       <div>
-        {content.map((log) =>
-            <Card key={log.id}
-                  title={`${this.props.user.nickname} ${log.type === 1 ? '日志' : '目标'}`}
-                  style={{ marginTop: '30px' }}
-                  extra={`${log.create_time.toString().substr(0, 10)}`}
-            >
-              <div style={{ background: '#F0F0F0', padding: '8px' }}>
-                <div style={{ padding: '10px 0 10px 17px', fontSize: '15px', background: 'white' }}>{log.content}</div>
-              </div>
-              <br/>
-              <Row style={{ marginTop: '10px' }}>
-                <Col span={24} style={{ textAlign: 'right' }}>
-                  <Button type='primary' htmlType='submit' ghost onClick={this.handlerDisplayCommentLog.bind(this, log.id)}>评论日志</Button>
-                  <Button type='primary' ghost style={{ marginLeft: 25 }} >
-                    推荐优秀日志
-                  </Button>
-                </Col>
-              </Row>
-              {
-                isCommentClick && logId === log.id ? <Comment handlerHideCommentLog={this.handlerHideCommentLog}/> : ''
-              }
-              {/*{*/}
-              {/*!!log.comments.length && <Collapse className='panelHeader'*/}
-              {/*bordered={false}*/}
-              {/*expandIcon={({isActive}) => <Icon type='caret-right'*/}
-              {/*rotate={isActive ? 90 : 0}/>}*/}
-              {/*>*/}
-              {/*<Panel header={`${log.comments.length}条评论`} style={customPanelStyle}>*/}
-              {/*{*/}
-              {/*log.comments.map((comment,index) =>*/}
-              {/*<p key={index} style={{background: '#F0F0F0'}}>{`${comment.commentUser}:${comment.commentText}`}</p>)*/}
-              {/*}*/}
-              {/*</Panel>*/}
-              {/*</Collapse>*/}
-              {/*}*/}
-            </Card>
+        {content.map((log, index) =>
+          <Card key={log.id}
+                title={`${this.props.user.nickname} ${log.type === 1 ? '日志' : '目标'}`}
+                style={{ marginTop: '30px' }}
+                extra={`${log.create_time.toString().substr(0, 10)}`}
+          >
+            <div style={{ background: '#F0F0F0', padding: '8px' }}>
+              <div style={{ padding: '10px 0 10px 17px', fontSize: '15px', background: 'white' }}>{log.content}</div>
+            </div>
+            <br/>
+            <Row style={{ marginTop: '10px' }}>
+              <Col span={24} style={{ textAlign: 'right' }}>
+                <Button type='primary' htmlType='submit' ghost
+                        onClick={this.handlerDisplayCommentLog.bind(this, log.id)}>评论日志</Button>
+                <Button type='primary' ghost style={{ marginLeft: 25 }}
+                        onClick={this.cancelExcellentLog.bind(this, log.id, index, log.user_id)}>
+                  推荐优秀日志
+                </Button>
+              </Col>
+            </Row>
+            {
+              isCommentClick && logId === log.id ? <Comment handlerHideCommentLog={this.handlerHideCommentLog}/> : ''
+            }
+            {/*{*/}
+            {/*!!log.comments.length && <Collapse className='panelHeader'*/}
+            {/*bordered={false}*/}
+            {/*expandIcon={({isActive}) => <Icon type='caret-right'*/}
+            {/*rotate={isActive ? 90 : 0}/>}*/}
+            {/*>*/}
+            {/*<Panel header={`${log.comments.length}条评论`} style={customPanelStyle}>*/}
+            {/*{*/}
+            {/*log.comments.map((comment,index) =>*/}
+            {/*<p key={index} style={{background: '#F0F0F0'}}>{`${comment.commentUser}:${comment.commentText}`}</p>)*/}
+            {/*}*/}
+            {/*</Panel>*/}
+            {/*</Collapse>*/}
+            {/*}*/}
+          </Card>
         )}
-        <Pagination style={{ marginTop: '40px' }} defaultCurrent={this.state.current} total={totalElements} pageSize={5}
+        <Pagination style={{ marginTop: '40px' }} defaultCurrent={this.state.current} total={total} pageSize={5}
                     onChange={this.onChange}/>
       </div>
     )
@@ -103,7 +130,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getPageLogs: (page, userId) => dispatch(getPageLogs(page, userId)),
-  getUser: (userId) => dispatch(getUser(userId))
+  getUser: (userId) => dispatch(getUser(userId)),
+  updateLog: (id, log, userId) => dispatch(updateLog(id, log, userId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FolloweeLog)

@@ -14,6 +14,7 @@ class MyLogBody extends Component {
       current: page
     })
     this.props.getPageLogs(page-1)
+    console.log('his.props.logs',this.props.logs)
   }
 
   render () {
@@ -23,7 +24,7 @@ class MyLogBody extends Component {
         <LogList/>
         <Pagination style={{ marginTop: '40px' }}
                     defaultCurrent={this.state.current}
-                    total={this.props.logs.totalElements}
+                    total={this.props.logs.total}
                     pageSize={5}
                     onChange={this.onChange}/>
       </div>
