@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card, Row, Col, Icon, Popconfirm, Pagination } from 'antd'
+import { Button, Card, Row, Col, Icon, Popconfirm, Pagination, message} from 'antd'
 import Comment from './Comment'
 import { connect } from 'react-redux'
 import { getPageLogs, updateLog } from '../action/index'
@@ -56,13 +56,15 @@ class FolloweeLog extends Component {
       'user_id': this.props.followLogs.content[index].user_id
     }
 
-    console.log('userId',userId)
-    console.log('logId',logId)
     this.props.updateLog(logId, log, userId)
-    console.log('this.props.followLogs.content[index].user_id2', this.props.followLogs.content[index].user_id)
-    console.log('window.location.pathname.slice(8)',window.location.pathname.slice(8))
 
-    // this.props.getPageLogs(0, window.location.pathname.slice(8))
+    if(this.props.followLogs.content[index].exc===1){
+      message.warning('已经被推荐')
+    }else {
+      message.success('推荐成功')
+    }
+
+
   }
 
   render () {

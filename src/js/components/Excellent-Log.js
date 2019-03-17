@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
-import { Card, Button, Pagination, Icon, Collapse } from 'antd'
+import { Card, Button, Pagination, Icon, Collapse, message } from 'antd'
 
-import { Row, Col } from 'antd'
+import { Row, Col} from 'antd'
 import Markdown from 'react-markdown'
 import '../../css/index.css'
 
@@ -83,6 +83,7 @@ class ExcellentLog extends Component {
     }
     this.props.updateLog(excLogID, excLog)
     this.props.getExcellentLog(0,1)
+    message.success('已成功取消优秀日志')
   }
 
   render () {
