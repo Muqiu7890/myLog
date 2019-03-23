@@ -39,7 +39,7 @@ class ExcellentLog extends Component {
 
   handlerAllLogExtended = () => {
     this.setState({
-      allLogExtended: !this.state.allLogExtended
+      allLogExtended: !this.state.allLogExtended,
     })
   }
 
@@ -112,25 +112,24 @@ class ExcellentLog extends Component {
               style={{ width: '100%', marginBottom: '40px' }}
             >
               <div style={{ padding: '8px', background: '#f0f0f0' }}>
-                <div style={{ padding: '8px', background: '#fff' }}>
+                <div style={{ padding: '8px', background: '#fff', wordBreak: 'break-all' }}>
                   {
-                    (logExtended && id === index) || allLogExtended ? <Markdown
-                      source={excLog.content}/> : <Markdown
-                      source={excLog.content.substr(0, 150) + '...'}/>
+                    (logExtended && id === index ) || allLogExtended || excLog.content.length < 300 ? <Markdown
+                      source={excLog.content} /> : <Markdown
+                      source={excLog.content.substr(0, 300) + '...'}/>
                   }
                 </div>
               </div>
-
               {
-                excLog.content.length > 100 &&
+                excLog.content.length > 300 &&
                 <div className='toggle-btn'
                      onClick={this.toggleClickHandler.bind(this, index, logExtended)}
-                     style={{ color: '#1890ff' }}>{logExtended || allLogExtended ? '收起' : '点击查看全文'}</div>
+                     style={{ color: '#1890ff' }}>{(logExtended && id === index) || allLogExtended ? '收起' : '点击查看全文'}</div>
               }
               <Row style={{ marginTop: '10px' }}>
                 <Col span={24} style={{ textAlign: 'right' }}>
-                  <Button type='primary' htmlType='submit' ghost
-                          onClick={this.handlerDisplayCommentLog.bind(this, index)}>评论日志</Button>
+                  {/*<Button type='primary' htmlType='submit' ghost*/}
+                          {/*onClick={this.handlerDisplayCommentLog.bind(this, index)}>评论日志</Button>*/}
                   <Button type='primary' ghost style={{ marginLeft: 25 }}
                           onClick={this.cancelExcellentLog.bind(this, excLog.id, index)}
                   >

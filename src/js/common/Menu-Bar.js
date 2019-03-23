@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { Icon, Layout, Menu } from 'antd'
 import { NavLink } from 'react-router-dom'
 
-const {
-  Sider
-} = Layout
+const { Sider } = Layout
 
 class MenuBar extends Component {
 
