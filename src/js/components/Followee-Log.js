@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Card, Row, Col, Icon, Popconfirm, Pagination, message } from 'antd'
 import Comment from './Comment'
 import { connect } from 'react-redux'
+import Markdown from 'react-markdown'
 import { getPageLogs, updateLog } from '../action/index'
 import { getUser } from '../action/User'
 
@@ -24,7 +25,7 @@ class FolloweeLog extends Component {
     this.setState({
       current: page
     })
-    this.props.getPageLogs(page - 1, window.location.pathname.slice(8))
+    this.props.getPageLogs(page - 1, window.location.hash.slice(9,11))
   }
 
   handlerHideCommentLog = () => {
@@ -82,8 +83,10 @@ class FolloweeLog extends Component {
                 style={{ marginTop: '30px' }}
                 extra={`${log.create_time.toString().substr(0, 10)}`}
           >
-            <div style={{ background: '#F0F0F0', padding: '8px' }}>
-              <div style={{ padding: '10px 0 10px 17px', fontSize: '15px', background: 'white' }}>{log.content}</div>
+            <div style={{ padding: '8px', background: '#f0f0f0' }}>
+              <div style={{ padding: '8px', background: '#fff'  }}>
+                <Markdown source={log.content}/>
+              </div>
             </div>
             <br/>
             <Row style={{ marginTop: '10px' }}>

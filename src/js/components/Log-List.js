@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button, Card, Row, Col, Icon, Popconfirm } from 'antd'
 import Comment from './Comment'
 import ModifyLog from './Modify-Log'
+import Markdown from 'react-markdown'
 import { connect } from 'react-redux'
 import { getPageLogs, deleteLog } from '../action/index'
 
@@ -71,8 +72,10 @@ class LogList extends Component {
                       </Popconfirm>
                     }
             >
-              <div style={{ background: '#F0F0F0', padding: '8px' }}>
-                <div style={{ padding: '10px 0 10px 17px', fontSize: '15px', background: 'white' }}>{log.content}</div>
+              <div style={{ padding: '8px', background: '#f0f0f0' }}>
+                <div style={{ padding: '8px', background: '#fff'  }}>
+                    <Markdown source={log.content}/>
+                </div>
               </div>
               <br/>
               <Row style={{ marginTop: '10px' }}>
