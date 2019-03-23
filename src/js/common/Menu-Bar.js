@@ -7,11 +7,6 @@ const {
 } = Layout
 
 class MenuBar extends Component {
-  componentDidMount () {
-    if (window.location.pathname !== '/') {
-      window.location.pathname = '/'
-    }
-  }
 
   render () {
     return (

@@ -2,6 +2,7 @@
   "name": "mylog",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "antd": "^3.12.1",
     "es6-promise": "^4.2.5",
@@ -30,10 +31,9 @@
       "done"
     ]
   },
-  "homepage": "./",
   "proxy": {
     "/api": {
-      "target": "http://localhost:8080",
+      "target": "http://120.79.50.224:8090",
       "secure": false,
       "changeOrigin": true
     }

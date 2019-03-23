@@ -16,8 +16,8 @@ class FolloweeLog extends Component {
   }
 
   componentWillMount () {
-    this.props.getPageLogs(0, window.location.pathname.slice(8))
-    this.props.getUser(window.location.pathname.slice(8))
+    this.props.getPageLogs(0, window.location.hash.slice(9,11))
+    this.props.getUser(window.window.location.hash.slice(9,11))
   }
 
   onChange = (page) => {

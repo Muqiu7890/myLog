@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import '../src/css/index.css'
 import 'antd/dist/antd.css'
 import { Layout } from 'antd'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import Head from './js/common/Head'
 import Foot from './js/common/Foot'
 import Router from './js/components/Router'
@@ -29,7 +29,7 @@ ReactDOM.render(
       <Header className="header" style={{ height: '113.6px', backgroundColor: '#595959' }}>
         <Head/>
       </Header>
-      <BrowserRouter>
+      <HashRouter>
         <Content style={{ padding: '0 50px' }}>
           <TopNav/>
           <Layout style={{ padding: '24px 0', background: '#fff' }}>
@@ -39,7 +39,7 @@ ReactDOM.render(
             </Content>
           </Layout>
         </Content>
-      </BrowserRouter>
+      </HashRouter>
       <Footer style={{ textAlign: 'center' }}>
         <Foot/>
       </Footer>
