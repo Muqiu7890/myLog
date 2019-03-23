@@ -5,13 +5,12 @@ import { NavLink } from 'react-router-dom'
 const { Sider } = Layout
 
 class MenuBar extends Component {
-
   render () {
     return (
       <Sider width={200} style={{ background: '#fff' }}>
         <Menu
           mode='inline'
-          defaultSelectedKeys={['/my-log']}
+          defaultSelectedKeys={[window.location.hash.slice(1)]}
           style={{ height: '100%' }}
         >
           <Menu.Item key='/my-log'>
