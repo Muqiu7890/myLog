@@ -25,8 +25,7 @@ class FolloweeLog extends Component {
     this.setState({
       current: page
     })
-    this.props.getPageLogs(page - 1, window.location.hash.slice(9,11))
-  }
+   }
 
   handlerHideCommentLog = () => {
     this.setState({
