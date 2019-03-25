@@ -79,7 +79,7 @@ class FolloweeLog extends Component {
       <div>
         {content.map((log, index) =>
           <Card key={log.id}
-                title={`${this.props.user.nickname} ${log.type === 1 ? '日志' : '目标'}`}
+                title={`${this.props.user.nickname || ''} ${log.type === 1 ? '日志' : '目标'}`}
                 style={{ marginTop: '30px' }}
                 extra={`${log.create_time.toString().substr(0, 10)}`}
           >
