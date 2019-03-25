@@ -2,18 +2,22 @@ import React, { Component } from 'react'
 import { Icon, Layout, Menu } from 'antd'
 import { NavLink } from 'react-router-dom'
 
-const {
-  Sider
-} = Layout
+const { Sider } = Layout
 
 class MenuBar extends Component {
-
+  getCurrentKey = () => {
+    if(window.location.hash.slice(1)==='/'){
+      return '/my-log'
+    }else {
+      return window.location.hash.slice(1);
+    }
+  }
   render () {
     return (
       <Sider width={200} style={{ background: '#fff' }}>
         <Menu
           mode='inline'
-          defaultSelectedKeys={['/my-log']}
+          defaultSelectedKeys={[this.getCurrentKey().toString()]}
           style={{ height: '100%' }}
         >
           <Menu.Item key='/my-log'>

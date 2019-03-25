@@ -25,6 +25,7 @@ class FolloweeLog extends Component {
     this.setState({
       current: page
     })
+    this.props.getPageLogs(page - 1, window.location.hash.slice(9,11))
    }
 
   handlerHideCommentLog = () => {
@@ -83,15 +84,15 @@ class FolloweeLog extends Component {
                 extra={`${log.create_time.toString().substr(0, 10)}`}
           >
             <div style={{ padding: '8px', background: '#f0f0f0' }}>
-              <div style={{ padding: '8px', background: '#fff'  }}>
+              <div style={{ padding: '8px', background: '#fff', wordBreak: 'break-all'  }}>
                 <Markdown source={log.content}/>
               </div>
             </div>
             <br/>
             <Row style={{ marginTop: '10px' }}>
               <Col span={24} style={{ textAlign: 'right' }}>
-                <Button type='primary' htmlType='submit' ghost
-                        onClick={this.handlerDisplayCommentLog.bind(this, log.id)}>评论日志</Button>
+                {/*<Button type='primary' htmlType='submit' ghost*/}
+                        {/*onClick={this.handlerDisplayCommentLog.bind(this, log.id)}>评论日志</Button>*/}
                 <Button type='primary' ghost style={{ marginLeft: 25 }}
                         onClick={this.cancelExcellentLog.bind(this, log.id, index, log.user_id)}>
                   推荐优秀日志

@@ -73,7 +73,7 @@ class LogList extends Component {
                     }
             >
               <div style={{ padding: '8px', background: '#f0f0f0' }}>
-                <div style={{ padding: '8px', background: '#fff'  }}>
+                <div style={{ padding: '8px', background: '#fff', wordBreak: 'break-all'  }}>
                     <Markdown source={log.content}/>
                 </div>
               </div>
@@ -82,10 +82,10 @@ class LogList extends Component {
                 <Col span={24} style={{ textAlign: 'right' }}>
                   <Button type='primary' htmlType='submit' ghost
                           onClick={this.handlerDisplayModifyLog.bind(this, log.id)}>修改日志</Button>
-                  <Button type='primary' ghost style={{ marginLeft: 25 }}
-                          onClick={this.handlerDisplayCommentLog.bind(this, log.id)}>
-                    评论日志
-                  </Button>
+                  {/*<Button type='primary' ghost style={{ marginLeft: 25 }}*/}
+                          {/*onClick={this.handlerDisplayCommentLog.bind(this, log.id)}>*/}
+                    {/*评论日志*/}
+                  {/*</Button>*/}
                 </Col>
               </Row>
               {
