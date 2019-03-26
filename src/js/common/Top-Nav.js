@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Breadcrumb } from 'antd'
 
-
 class TopNav extends Component {
   getCurrentPageName = () => {
     switch(window.location.hash.slice(2)) {

@@ -17,16 +17,16 @@ class FolloweeLog extends Component {
   }
 
   componentWillMount () {
-    this.props.getPageLogs(0, window.location.hash.slice(9,11))
-    this.props.getUser(window.window.location.hash.slice(9,11))
+    this.props.getPageLogs(0, window.location.hash.slice(9, 11))
+    this.props.getUser(window.location.hash.slice(9, 11))
   }
 
   onChange = (page) => {
     this.setState({
       current: page
     })
-    this.props.getPageLogs(page - 1, window.location.hash.slice(9,11))
-   }
+    this.props.getPageLogs(page - 1, window.location.hash.slice(9, 11))
+  }
 
   handlerHideCommentLog = () => {
     this.setState({
@@ -77,14 +77,14 @@ class FolloweeLog extends Component {
     }
     return (
       <div>
-        {content.map((log, index) =>
+        {this.props.user.nickname && content.map((log, index) =>
           <Card key={log.id}
                 title={`${this.props.user.nickname} ${log.type === 1 ? '日志' : '目标'}`}
                 style={{ marginTop: '30px' }}
                 extra={`${log.create_time.toString().substr(0, 10)}`}
           >
             <div style={{ padding: '8px', background: '#f0f0f0' }}>
-              <div style={{ padding: '8px', background: '#fff', wordBreak: 'break-all'  }}>
+              <div style={{ padding: '8px', background: '#fff', wordBreak: 'break-all' }}>
                 <Markdown source={log.content}/>
               </div>
             </div>

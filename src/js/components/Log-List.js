@@ -73,7 +73,7 @@ class LogList extends Component {
                     }
             >
               <div style={{ padding: '8px', background: '#f0f0f0' }}>
-                <div style={{ padding: '8px', background: '#fff', wordBreak: 'break-all'  }}>
+                <div style={{ padding: '8px', background: '#fff', wordBreak: 'break-all' }}>
                     <Markdown source={log.content}/>
                 </div>
               </div>
