@@ -44,12 +44,10 @@ class FollowList extends Component {
                     }
               >
                 <p>已更新日志：{follow.logs.length}</p>
-                <Link to={{pathname:'/follow/'}}>
-                <p>最近一次更新时间：{follow.logs[follow.logs.length - 1].create_time.substring(0, 10)}<a href="#" style={{
-                  float: 'right'
-                }} onClick={this.unfollow.bind(this, follow.user.id)}>取消关注</a>
+                <p>最近一次更新时间：{follow.logs[follow.logs.length - 1].create_time.substring(0, 10)}<span style={{
+                  float: 'right',color: '#1973ba'
+                }} onClick={this.unfollow.bind(this, follow.user.id)}>取消关注</span>
                 </p>
-                </Link>
               </Card>
             </Col>
           )}
