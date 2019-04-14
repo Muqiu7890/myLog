@@ -33,7 +33,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://120.79.50.224:8090",
+      "target": "http://120.79.50.224:8096",
       "secure": false,
       "changeOrigin": true
     }

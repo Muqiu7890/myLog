@@ -6,6 +6,7 @@ const { Sider } = Layout
 
 class MenuBar extends Component {
   getCurrentKey = () => {
+    console.log(window.location.hash)
     if(window.location.hash.slice(1)==='/'){
       return '/my-log'
     }else {

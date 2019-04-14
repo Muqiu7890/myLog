@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Avatar, Col, Row, message } from 'antd'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getAllFollowedUsers, cancelFollowedUser } from '../action/Follows'
 
@@ -29,7 +29,7 @@ class FollowList extends Component {
             <Col span={8} key={index}>
               <Card style={{ width: '100%', margin: '10px 20px 10px 0' }}
                     title={
-                      <NavLink to={`/follow/${follow.user.id}`}>
+                      <Link to={`/follow/${follow.user.id}`}>
                         <div style={{ margin: '0 auto', textAlign: 'center', marginTop: '15px' }}>
                           <Avatar
                             style={{
@@ -40,14 +40,16 @@ class FollowList extends Component {
                             size={50}>{follow.user.nickname[0]}</Avatar>
                           <p>{follow.user.name}@{follow.user.nickname}</p>
                         </div>
-                      </NavLink>
+                      </Link>
                     }
               >
                 <p>已更新日志：{follow.logs.length}</p>
+                <Link to={{pathname:'/follow/'}}>
                 <p>最近一次更新时间：{follow.logs[follow.logs.length - 1].create_time.substring(0, 10)}<a href="#" style={{
                   float: 'right'
                 }} onClick={this.unfollow.bind(this, follow.user.id)}>取消关注</a>
                 </p>
+                </Link>
               </Card>
             </Col>
           )}
